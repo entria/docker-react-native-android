@@ -3,7 +3,8 @@ executorType: docker
 jobs:
   build:
     environment:
-      - IMAGE_NAME: "docker-react-native-android"
+      - IMAGE_NAME: "entria/react-native-android"
+      - TAG: "0.1.${CIRCLE_BUILD_NUM}"
     working_directory: ~/app
     docker:
       - image: buildpack-deps:trusty
@@ -19,7 +20,13 @@ jobs:
             mv /tmp/docker/* /usr/bin
       - setup_remote_docker
       - run:
-          name: Build the Docker image
+          name: Build Docker image
           command: |
-            docker build --rm=false -t $IMAGE_NAME .
-            docker images
+            docker build -t $IMAGE_NAME:$TAG .
+      - run:
+          name: Push Docker image
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker login -u $DOCKERHUB_LOGIN -p $DOCKERHUB_PASS
+              docker push $IMAGE_NAME:$TAG
+            fi
