@@ -4,12 +4,12 @@ jobs:
   build:
     environment:
       - IMAGE_NAME: "entria/react-native-android"
-      - TAG: "0.1.${CIRCLE_BUILD_NUM}"
     working_directory: ~/app
     docker:
       - image: buildpack-deps:trusty
     steps:
       - checkout
+      - run: export TAG="0.1.${CIRCLE_BUILD_NUM}"
       - run:
           name: Install Docker client
           command: |
