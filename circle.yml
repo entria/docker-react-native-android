@@ -21,13 +21,14 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            TAG="0.1.${CIRCLE_BUILD_NUM}"
-            docker build -t $IMAGE_NAME:$TAG .
+            docker build -t $IMAGE_NAME:latest .
       - run:
           name: Push Docker image
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               TAG="0.1.${CIRCLE_BUILD_NUM}"
               docker login -u $DOCKERHUB_LOGIN -p $DOCKERHUB_PASS
+              docker tag $IMAGE_NAME:latest $IMAGE_NAME:$TAG
+              docker push $IMAGE_NAME:latest
               docker push $IMAGE_NAME:$TAG
             fi
