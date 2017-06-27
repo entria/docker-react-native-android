@@ -8,10 +8,18 @@ WORKDIR /opt/app
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install general dependencies
-RUN dpkg --add-architecture i386 && \
-    apt-get update && \
-    apt-get install -yq python python-dev autoconf automake apt-transport-https build-essential \
-     libc6:i386 libstdc++6:i386 zlib1g:i386 libncurses5:i386 --no-install-recommends
+RUN dpkg --add-architecture i386 && apt-get update && apt-get install -yq \
+    apt-transport-https \
+    autoconf \
+    automake \
+    build-essential \
+    libc6:i386 \
+    libncurses5:i386 \
+    libstdc++6:i386 \
+    python \
+    python-dev \
+    zlib1g:i386 \
+    --no-install-recommends
 
 ENV ANDROID_HOME="/opt/android-sdk-linux"
 ENV ANDROID_SDK="${ANDROID_HOME}"
