@@ -10,7 +10,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # Install general dependencies
 RUN dpkg --add-architecture i386 && \
     apt-get update && \
-    apt-get install -yq python python-dev python-pip python-virtualenv autoconf automake apt-transport-https build-essential \
+    apt-get install -yq python python-dev autoconf automake apt-transport-https build-essential \
      libc6:i386 libstdc++6:i386 zlib1g:i386 libncurses5:i386 --no-install-recommends
 
 ENV ANDROID_HOME="/opt/android-sdk-linux"
@@ -96,6 +96,11 @@ RUN set -ex && \
     ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn && \
     ln -s /opt/yarn/bin/yarn /usr/local/bin/yarnpkg && \
     rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz
+
+# Clean
+RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    apt-get autoremove -y && \
+    apt-get clean
 
 # Support Gradle
 ENV TERM dumb
