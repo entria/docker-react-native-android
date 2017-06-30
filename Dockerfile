@@ -18,8 +18,13 @@ RUN dpkg --add-architecture i386 && apt-get update && apt-get install -yq \
     libstdc++6:i386 \
     python \
     python-dev \
+    python-pip \
+    software-properties-common \
     zlib1g:i386 \
     --no-install-recommends
+
+# Install AWS CLI
+RUN pip install --upgrade awscli
 
 ENV ANDROID_HOME="/opt/android-sdk-linux"
 ENV ANDROID_SDK="${ANDROID_HOME}"
