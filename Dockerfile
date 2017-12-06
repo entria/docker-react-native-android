@@ -40,7 +40,7 @@ ENV GOOGLE_COMPONENTS extra-android-m2repository,extra-google-m2repository,extra
 # Install Android SDK (based on: https://github.com/gfx/docker-android-project/blob/master/Dockerfile)
 # See for CircleCI Issue:
 #  https://discuss.circleci.com/t/failed-to-register-layer-error-processing-tar-file-exit-status-1-container-id-249512-cannot-be-mapped-to-a-host-id/13453/5
-ENV ANDROID_SDK_URL https://dl.google.com/android/repository/tools_r${ANDROID_BUILD_TOOLS_VERSION}-linux.zip
+ENV ANDROID_SDK_URL https://dl.google.com/android/repository/build-tools_r${ANDROID_BUILD_TOOLS_VERSION}-linux.zip
 RUN curl -L "${ANDROID_SDK_URL}" -o /tmp/android-sdk-linux.zip && \
     unzip /tmp/android-sdk-linux.zip -d /opt/ && \
     chown -R root:root /opt && \
