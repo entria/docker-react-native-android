@@ -19,6 +19,7 @@ RUN dpkg --add-architecture i386 && apt-get update && apt-get install -yq \
     python \
     python-dev \
     python-pip \
+    python-setuptools \
     software-properties-common \
     zlib1g:i386 \
     --no-install-recommends
