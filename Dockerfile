@@ -54,13 +54,10 @@ RUN curl -L "${ANDROID_SDK_URL}" -o /tmp/android-sdk-linux.zip && \
     ls ${ANDROID_HOME}/tools
 
 # Install Android SDK components
-RUN echo y | sdkmanager "platform-tools" "build-tools;26.0.2" "build-tools;25.0.3" "platforms;android-26" "platforms;android-25"
+RUN echo y | sdkmanager "platform-tools" "build-tools;26.0.2" "build-tools;25.0.3" "platforms;android-26" "platforms;android-25" \
+                "extras;google;m2repository" "extras;android;m2repository" "extras;google;google_play_services"
 
-# Install Android SDK components
-#RUN echo y | android update sdk --no-ui --all --filter "${ANDROID_COMPONENTS}" ; \
-#    echo y | android update sdk --no-ui --all --filter "${GOOGLE_COMPONENTS}"
-
-# # Install Watchman
+# Install Watchman
 RUN git clone https://github.com/facebook/watchman.git && \
     cd watchman && \
     git checkout v4.7.0 && \
