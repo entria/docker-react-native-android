@@ -51,7 +51,7 @@ RUN curl -L "${ANDROID_SDK_URL}" -o /tmp/android-sdk-linux.zip && \
     mkdir ${ANDROID_HOME} && \
     mv /opt/tools ${ANDROID_HOME}/ && \
     ls ${ANDROID_HOME} && \
-    ls ${ANDROID_HOME}/tools
+    ls ${ANDROID_HOME}/tools && chown -R root:root ${ANDROID_HOME} 
 
 # Install Android SDK components
 RUN echo y | sdkmanager "platform-tools" "build-tools;26.0.2" "build-tools;25.0.3" "platforms;android-26" "platforms;android-25" \
@@ -61,7 +61,7 @@ RUN echo y | sdkmanager "platform-tools" "build-tools;26.0.2" "build-tools;25.0.
 RUN git clone https://github.com/facebook/watchman.git && \
     cd watchman && \
     git checkout v4.7.0 && \
-    ./autogen.sh && ./configure && make && make install
+    ./autogen.sh && ./configure && make && make install && cd .. && rm -rf watchman
 
 # Install Node JS and Yarn
 # https://github.com/nodejs/docker-node/blob/12ba2e5432cd50037b6c0cf53464b5063b028227/8.1/Dockerfile
