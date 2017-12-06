@@ -29,7 +29,7 @@ RUN pip install --upgrade awscli
 
 ENV ANDROID_HOME="/opt/android-sdk-linux"
 ENV ANDROID_SDK="${ANDROID_HOME}"
-ENV PATH="${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools:${PATH}"
+ENV PATH="${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools:${ANDROID_SDK}/tools/bin:${PATH}"
 RUN echo "export PATH=${PATH}" > /root/.profile
 
 # Install Android SDK (based on: https://github.com/gfx/docker-android-project/blob/master/Dockerfile)
