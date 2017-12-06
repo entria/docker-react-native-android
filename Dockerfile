@@ -123,7 +123,7 @@ RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
 ENV TERM dumb
 
 # Install code-push-cli
-RUN npm install -g code-push-cli
+RUN npm install -g code-push-cli && chown -R root:root /usr/local/lib/node_modules/code-push-cli/node_modules
 
 COPY entrypoint.sh /entrypoint.sh
 
