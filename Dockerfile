@@ -39,10 +39,10 @@ RUN echo "export PATH=${PATH}" > /root/.profile
 # Following URL is for 26.0.2
 ENV ANDROID_SDK_URL https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip
 
-ENV ANDROID_BUILD_TOOLS_VERSION 26.0.2,25.0.3
-ENV ANDROID_API_LEVELS android-26,android-25
-ENV ANDROID_COMPONENTS platform-tools,build-tools-${ANDROID_BUILD_TOOLS_VERSION},${ANDROID_API_LEVELS}
-ENV GOOGLE_COMPONENTS extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services,extra-google-gcm
+#ENV ANDROID_BUILD_TOOLS_VERSION 26.0.2,25.0.3
+#ENV ANDROID_API_LEVELS android-26,android-25
+#ENV ANDROID_COMPONENTS platform-tools,build-tools-${ANDROID_BUILD_TOOLS_VERSION},${ANDROID_API_LEVELS}
+#ENV GOOGLE_COMPONENTS extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services,extra-google-gcm
 
 RUN curl -L "${ANDROID_SDK_URL}" -o /tmp/android-sdk-linux.zip && \
     unzip /tmp/android-sdk-linux.zip -d /opt/ && \
@@ -54,8 +54,11 @@ RUN curl -L "${ANDROID_SDK_URL}" -o /tmp/android-sdk-linux.zip && \
     ls ${ANDROID_HOME}/tools
 
 # Install Android SDK components
-RUN echo y | android update sdk --no-ui --all --filter "${ANDROID_COMPONENTS}" ; \
-    echo y | android update sdk --no-ui --all --filter "${GOOGLE_COMPONENTS}"
+skdmanager "platform-tools" "build-tools;26.0.2" "build-tools;25.0.3" "platforms;android-26" "platforms;android-25"
+
+# Install Android SDK components
+#RUN echo y | android update sdk --no-ui --all --filter "${ANDROID_COMPONENTS}" ; \
+#    echo y | android update sdk --no-ui --all --filter "${GOOGLE_COMPONENTS}"
 
 # # Install Watchman
 RUN git clone https://github.com/facebook/watchman.git && \
