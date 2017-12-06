@@ -31,8 +31,8 @@ ENV ANDROID_SDK="${ANDROID_HOME}"
 ENV PATH="${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools:${PATH}"
 RUN echo "export PATH=${PATH}" > /root/.profile
 
-ENV ANDROID_BUILD_TOOLS_VERSION 25.0.3
-ENV ANDROID_API_LEVELS android-25
+ENV ANDROID_BUILD_TOOLS_VERSION 26.0.1
+ENV ANDROID_API_LEVELS android-26
 ENV ANDROID_COMPONENTS platform-tools,build-tools-${ANDROID_BUILD_TOOLS_VERSION},${ANDROID_API_LEVELS}
 ENV GOOGLE_COMPONENTS extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services,extra-google-gcm
 
