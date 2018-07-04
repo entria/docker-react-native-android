@@ -14,6 +14,7 @@ RUN dpkg --add-architecture i386 && apt-get update && apt-get install -yq \
     automake \
     build-essential \
     imagemagick \
+    jq \
     libc6:i386 \
     libcurl3 \
     libcurl3-gnutls \
@@ -81,6 +82,11 @@ RUN wget http://ftp.ruby-lang.org/pub/ruby/ruby-${RUBY_VERSION}.tar.gz && \
 
 # Install bundler
 RUN gem install bundler
+
+# Install Slack CLI https://github.com/rockymadden/slack-cli
+RUN curl -O https://raw.githubusercontent.com/rockymadden/slack-cli/master/src/slack && \
+    chmod +x slack && \
+    ln -s /opt/app/slack /usr/local/bin/slack
 
 # Install Node JS and Yarn
 # https://github.com/nodejs/docker-node/blob/12ba2e5432cd50037b6c0cf53464b5063b028227/8.1/Dockerfile
