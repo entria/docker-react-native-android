@@ -22,11 +22,13 @@ RUN dpkg --add-architecture i386 && apt-get update && apt-get install -yq \
     python-setuptools \
     software-properties-common \
     zlib1g:i386 \
+    zlib1g-dev \
     --no-install-recommends
 
 # Install AWS CLI
 RUN pip install --upgrade awscli
 
+ENV RUBY_VERSION="2.4.4"
 ENV ANDROID_HOME="/opt/android-sdk-linux"
 ENV ANDROID_SDK="${ANDROID_HOME}"
 ENV PATH="${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools:${ANDROID_SDK}/tools/bin:${PATH}"
@@ -62,6 +64,13 @@ RUN git clone https://github.com/facebook/watchman.git && \
     cd watchman && \
     git checkout v4.7.0 && \
     ./autogen.sh && ./configure && make && make install && cd .. && rm -rf watchman
+
+# Install Ruby and RubyGems
+RUN wget http://ftp.ruby-lang.org/pub/ruby/ruby-${RUBY_VERSION}.tar.gz && \
+    tar -xzf ruby-${RUBY_VERSION}.tar.gz && \
+    rm ruby-${RUBY_VERSION}.tar.gz && \
+    cd ruby-${RUBY_VERSION}/ && \
+    ./configure && make && make install
 
 # Install Node JS and Yarn
 # https://github.com/nodejs/docker-node/blob/12ba2e5432cd50037b6c0cf53464b5063b028227/8.1/Dockerfile
