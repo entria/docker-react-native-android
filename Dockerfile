@@ -15,7 +15,9 @@ RUN dpkg --add-architecture i386 && apt-get update && apt-get install -yq \
     build-essential \
     libc6:i386 \
     libncurses5:i386 \
+    libssl-dev \
     libstdc++6:i386 \
+    pkg-config \
     python \
     python-dev \
     python-pip \
@@ -70,7 +72,7 @@ RUN wget http://ftp.ruby-lang.org/pub/ruby/ruby-${RUBY_VERSION}.tar.gz && \
     tar -xzf ruby-${RUBY_VERSION}.tar.gz && \
     rm ruby-${RUBY_VERSION}.tar.gz && \
     cd ruby-${RUBY_VERSION}/ && \
-    ./configure && make && make install
+    ./configure --disable-install-rdoc && make && make install
 
 # Install bundler
 RUN gem install bundler
