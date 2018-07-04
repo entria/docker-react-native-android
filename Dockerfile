@@ -13,8 +13,13 @@ RUN dpkg --add-architecture i386 && apt-get update && apt-get install -yq \
     autoconf \
     automake \
     build-essential \
+    imagemagick \
     libc6:i386 \
+    libcurl3 \
+    libcurl3-gnutls \
+    libcurl4-openssl-dev \
     libncurses5:i386 \
+    librsvg2-bin \
     libssl-dev \
     libstdc++6:i386 \
     pkg-config \
