@@ -72,6 +72,9 @@ RUN wget http://ftp.ruby-lang.org/pub/ruby/ruby-${RUBY_VERSION}.tar.gz && \
     cd ruby-${RUBY_VERSION}/ && \
     ./configure && make && make install
 
+# Install bundler
+RUN gem install bundler
+
 # Install Node JS and Yarn
 # https://github.com/nodejs/docker-node/blob/12ba2e5432cd50037b6c0cf53464b5063b028227/8.1/Dockerfile
 ENV NPM_CONFIG_LOGLEVEL info
