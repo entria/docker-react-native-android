@@ -61,7 +61,7 @@ RUN curl -L "${ANDROID_SDK_URL}" -o /tmp/android-sdk-linux.zip && \
     mkdir ${ANDROID_HOME} && \
     mv /opt/tools ${ANDROID_HOME}/ && \
     ls ${ANDROID_HOME} && \
-    ls ${ANDROID_HOME}/tools && chown -R root:root ${ANDROID_HOME} 
+    ls ${ANDROID_HOME}/tools && chown -R root:root ${ANDROID_HOME}
 
 # Install Android SDK components
 RUN echo y | sdkmanager "platform-tools" "build-tools;26.0.2" "build-tools;25.0.3" "platforms;android-26" "platforms;android-25" \
@@ -91,8 +91,8 @@ RUN curl -O https://raw.githubusercontent.com/rockymadden/slack-cli/master/src/s
 # Install Node JS and Yarn
 # https://github.com/nodejs/docker-node/blob/12ba2e5432cd50037b6c0cf53464b5063b028227/8.1/Dockerfile
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 8.11.3
-ENV YARN_VERSION 1.6.0
+ENV NODE_VERSION 10.13.0
+ENV YARN_VERSION 1.12.3
 
 RUN groupadd --gid 1000 node && \
     useradd --uid 1000 --gid node --shell /bin/bash --create-home node
