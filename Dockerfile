@@ -67,6 +67,7 @@ RUN curl -L "${ANDROID_SDK_URL}" -o /tmp/android-sdk-linux.zip && \
 RUN echo y | sdkmanager "platform-tools" "build-tools;26.0.2" "build-tools;25.0.3" "platforms;android-26" "platforms;android-25" \
                 "extras;google;m2repository" "extras;android;m2repository" "extras;google;google_play_services"
 
+RUN echo y | sdkmanager --licenses
 # Install Watchman
 RUN git clone https://github.com/facebook/watchman.git && \
     cd watchman && \
