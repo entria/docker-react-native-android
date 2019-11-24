@@ -92,8 +92,8 @@ RUN curl -O https://raw.githubusercontent.com/rockymadden/slack-cli/master/src/s
 # Install Node JS and Yarn
 # https://github.com/nodejs/docker-node/blob/12ba2e5432cd50037b6c0cf53464b5063b028227/8.1/Dockerfile
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 10.13.0
-ENV YARN_VERSION 1.12.3
+ENV NODE_VERSION 12.13.1
+ENV YARN_VERSION 1.19.1
 
 RUN groupadd --gid 1000 node && \
     useradd --uid 1000 --gid node --shell /bin/bash --create-home node
